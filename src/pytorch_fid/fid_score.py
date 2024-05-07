@@ -140,7 +140,7 @@ def get_activations(
         print(
             (
                 "Warning: batch size is bigger than the data size. "
-                "Setting batch size to data size2"
+                "Setting batch size to data size."
             )
         )
         batch_size = max(len(files),1)
@@ -268,21 +268,20 @@ def get_all_image_files(root_path):
     path = pathlib.Path(root_path)
     image_extensions = {".bmp", ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".ppm", ".pgm", ".webp"}
     files = [str(file) for file in path.rglob('*') if file.suffix.lower() in image_extensions]
-    print(len(files))
-    print("Found  files in {root_path}")
-    print(root_path)
+    #print(len(files))
+    #print("Found  files in {root_path}")
+    #print(root_path)
     return files
 
 def compute_statistics_of_path(path, model, batch_size, dims, device, num_workers=1):
-    print("compute_statistics_ofpath")
+    
     if path.endswith(".npz"):
         with np.load(path) as f:
             m, s = f["mu"][:], f["sigma"][:]
     else:
         files = get_all_image_files(path)
         if not files:
-          raise RuntimeError("No image files found in the specified path: {path}")
-          print(path)
+          raise RuntimeError("No image files found in the specified path:",path) 
         m, s = calculate_activation_statistics(files, model, batch_size, dims, device, num_workers)
     
         #path = pathlib.Path(path)
@@ -362,7 +361,6 @@ def main():
     if args.save_stats:
         save_fid_stats(args.path, args.batch_size, device, args.dims, num_workers)
         return
-
 
     fid_value = calculate_fid_given_paths(
         args.path, args.batch_size, device, args.dims, num_workers
