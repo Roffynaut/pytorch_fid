@@ -134,8 +134,6 @@ def get_activations(
     """
     model.eval()
 
-    print("len files")
-    print(len(files))
     if batch_size > len(files):
         print(
             (
@@ -143,7 +141,7 @@ def get_activations(
                 "Setting batch size to data size."
             )
         )
-        batch_size = max(len(files),1)
+        batch_size = len(files)
 
     dataset = ImagePathDataset(files, transforms=TF.ToTensor())
     dataloader = torch.utils.data.DataLoader(
@@ -268,9 +266,6 @@ def get_all_image_files(root_path):
     path = pathlib.Path(root_path)
     image_extensions = {".bmp", ".jpg", ".jpeg", ".png", ".tif", ".tiff", ".ppm", ".pgm", ".webp"}
     files = [str(file) for file in path.rglob('*') if file.suffix.lower() in image_extensions]
-    #print(len(files))
-    #print("Found  files in {root_path}")
-    #print(root_path)
     return files
 
 def compute_statistics_of_path(path, model, batch_size, dims, device, num_workers=1):
