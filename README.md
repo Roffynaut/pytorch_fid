@@ -9,7 +9,7 @@ pip install pytorch_fid
 
 # Run
 To run the program on GPU use --device cuda:N where N is the number of GPUs available. 
-python -m pytorch_fid  --device cuda:0 path/to/dataset1 path/to/dataset2
+python -m pytorch_fid --device cuda:0 path/to/dataset1 path/to/dataset2
 
 # To use npz files.
 NPZ files have been created for the HAM10000 dataset which speeds up calculation. The 256x256 and 384x384 versions can be found in the /npz folder. 
