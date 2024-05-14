@@ -118,7 +118,7 @@ class ImagePathDataset(torch.utils.data.Dataset):
 
 
 def get_activations(
-    files, model, batch_size=50, dims=2048, device="cpu", num_workers=1
+    files, model, batch_size=50, dims=2048, device="cpu", num_workers=1, transforms=None
 ):
     """Calculates the activations of the pool_3 layer for all images.
 
