@@ -6,6 +6,7 @@ Install from pip:
 pip install pytorch_fid
 ```
 # Run
+The program calculates the Fréchet Inception Distance between two image datasets. 
 To run the program simply follow the example. Point to the folder with generated images and the original Ham10000 dataset. 
 ```
 python -m pytorch_fid --device cuda:0 path/to/dataset1 path/to/dataset2 --resolution 256
